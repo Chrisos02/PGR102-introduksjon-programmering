@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 4 - student 2</title>
+</head>
+
+<body>
+
+    <h1>Kontoer:</h1>
+    <button id="bruks-konto-btn">Brukskonto</button>
+    <br>
+    <br> 
+    <input id="bruks-konto-transfer-btn" type="button" value="Overfør penger fra brukskonto">
+    <br>
+    <br>
+    <br>
+    <button id="lønns-konto-btn">Lønnskonto</button>
+    <br>
+    <br>
+    <input id="lønns-konto-transfer-btn" type="button" value="Overfør penger fra lønnsskonto">
+    <br>
+    <br>
+    <br>
+    <button id="spare-konto-btn">Sparekonto</button>
+    <br>
+    <br>
+    <input id="spare-konto-transfer-btn" type="button" value="Overfør penger fra sparekonto">
+
+
+    <script>
+
+
+        // VARIABLER
+
+        // Variabler som innneholder elementer fra html.
+        
+        var bruksKontoBtn = document.getElementById("bruks-konto-transfer-btn");
+        var lonnsKontoBtn = document.getElementById("lønns-konto-btn");
+        var spareKontoBtn = document.getElementById("spare-konto-btn");
+        var AmountMoney = document.getElementById("amount-money");
+
+        var password = "123"
+
+        let KIDnumber = false;
+        
+        var sparePeng = "21000"
+
+        var myPassword = prompt("Skriv inn passord for å få tilgang til dine kontoer")
+
+        if (myPassword == password) {
+            alert("Velkommen, her er kontoene dine")
+        }else {
+            alert("Feil passord..")
+            location.reload();
+        }
+    
+        // FUNKSJONER
+
+        function transferBruksAccBtn(){
+            KIDnumber = true}
+
+          function h(){
+        if(KIDnumber = true){
+            transferBruksAcc();
+        }
+    }
+
+        
+            function transferBruksAcc() {
+               var whichAccount = prompt("Hvilken konto vil du overføre til?");
+                    if(whichAccount.value = "Sparekonto")
+                        var savingsAccount = prompt("Skriv inn et beløp du ønsker å overføre.")
+                        sparePeng = sparePeng - savingsAccount.value;
+                    if(whichAccount.value = "Lønnskonto")
+                        var lonnsAccount = prompt("Skriv inn et beløp du ønsker å overføre.")
+                        lonnsPeng = lonnsPeng - lonnsAccount.value;
+        } 
+                
+                function spareKonto(){
+                    sparepeng = 21000;
+                    alert("21000");
+                }
+
+                function bruksKonto(){
+                    bruksPeng = 1200;
+                    alert("1200kr")
+                }
+
+                function lonnsKonto(){
+                    lonnsPeng = 8000;
+                    alert("8000kr")
+                }
+
+
+        // EVENTER
+
+        
+        spareKontoBtn.onclick = spareKonto;
+        bruksKontoBtn.onclick = transferBruksAccBtn;
+        lonnsKontoBtn.onclick= lonnsKonto;
+
+</script>   
+</body>
+</html>

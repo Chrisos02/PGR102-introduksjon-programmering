@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 2 - Miaow Miaow møter fisken</title>
+    <link rel="stylesheet" href="css/oppgave2.css" type="text/css">
+</head>
+<body>
+    
+    <div id="menu-container">
+        <input id="move-left-btn" type="button" value="Venstre">
+        <input id="move-up-btn" type="button" value="Opp">
+        <input id="move-right-btn" type="button" value="Høyre">
+        <input id="move-down-btn" type="button" value="Ned">
+    </div>
+    <div id="game-container">
+        <p>Antall steg: <span id="number-of-steps-span">0</span></p>
+        <img id="miaow-miaow" src="images/miaow-miaow.png">
+        <img id="the-mighty-fish" src="images/fish.png">
+        <h2 id="fish-room-title">Fiskens rom</h2>
+        <div id="line-div"></div>
+    </div>
+    <div id="dialogue-output-div">
+        <p>Miaow Miaow: <span id="miaow-miaow-says">...</span></p>
+        <p>Fisken: <span id="fish-says">...</span></p>
+    </div>
+
+    <script>
+
+        // Variabler
+
+        var moveleftBtn = document.getElementById("move-left-btn");
+
+        var moveupBtn = document.getElementById("move-up-btn");
+
+        var movedownBtn = document.getElementById("move-down-btn");
+
+        var moverightBtn = document.getElementById("move-right-btn");
+
+        var catImg = document.getElementById("miaow-miaow");
+
+        var catHorizontalPos = 0;
+
+        var catVerticalPos = 0;
+
+        var fishSays = document.getElementById("fish-says");
+
+        var catSays = document.getElementById("miaow-miaow-says");
+        
+        var catTalk = [
+            "God dag!",
+            "God kveld!",
+            "God aften",
+            "God morgen",
+            "Kan jeg få et glass vann?",
+        ];
+
+        var fishTalk = [
+            "I like måte!",
+            "Hva mener du med det?",
+            "Er du usikker på det?",
+            "Takk det samme",
+            "Nei",           
+        ];
+
+        var fishImg = document.getElementById("the-mighty-fish");
+
+        var catRandom = catTalk[Math.floor(Math.random() * catTalk.length)];
+
+        var fishRandom = fishTalk[Math.floor(Math.random() * catTalk.length)];
+
+
+
+        // Funksjoner
+        
+
+        // Funksjoner som vi ikke fikk helt til.
+
+       /* function randomFishFunction(){
+            for(let i=0; i < catTalk.length; i++){
+                var fishRandom = fishTalk[Math.floor(Math.random() * catTalk.length)];   
+            }           
+        }
+         function randomCatFunction(){
+            for(let i=0; i < catTalk.length; i++){
+                var catRandom = catTalk[Math.floor(Math.random() * catTalk.length)];
+                
+            
+        } */
+
+        
+        // Disse funksjonene får "catImg" til å flytte på seg ved hjelp av ".style.left", ".style.top" og ".style.position".
+    
+        
+        function catLeft(){
+            if(catHorizontalPos >= 50)
+                    catHorizontalPos -= 50;
+                    catImg.style.position = 'Relative';
+                    catImg.style.left = catHorizontalPos + 'px';
+            }if(catHorizontalPos < 0){
+                    catImg.style.position = 'Relative';
+                    catImg.style.left = catHorizontalPos + 'px';
+        }
+
+        function catUp(){
+                    catVerticalPos -= 50;
+                    catImg.style.position = 'Relative';
+                    catImg.style.top = catVerticalPos + 'px';
+        }
+
+        function catRight(){
+                    catHorizontalPos += 50;
+                    catImg.style.position = 'Relative';
+                    catImg.style.left = catHorizontalPos + 'px';
+        }
+
+        function catDown(){
+                    catVerticalPos += 50;
+                    catImg.style.position = 'Relative';
+                    catImg.style.top = catVerticalPos + 'px';
+        }
+   
+        // Denne funksjonen skriver ut tilfeldige strings fra en array ved bruk av ".innerHTML". 
+        // Funksjonen bruker en if-else-betingelse som gjør slik at arraysene kun blir skrevet ut hvis "catImg" er 600px eller mer, til høyre.
+
+         function dialogueFunction(){           
+                if(catHorizontalPos >= 600){
+                    for(let i=0; i < catTalk.length; i++){
+                        catSays.innerHTML = catRandom; 
+                        fishSays.innerHTML = fishRandom;        
+                }}else{
+                fishSays.innerText = "Fisken hører ikke hva Miaow Miaow prøver å si."
+            }
+        }
+    
+
+    
+        
+        // Funksjonen gjør slik at "catImg" sin posisjon blir tilbakestilt.
+
+        function catReset(){
+            if(catHorizontalPos >= 700){
+                catImg.style.position= 'Relative';
+                catImg.style.left = catHorizontalPos -= catHorizontalPos;
+                catImg.style.top = catVerticalPos -= catVerticalPos;
+                fishSays.innerText = "Kom deg vekk!";
+                catSays.innerText = "";
+        }
+    }
+
+        // setInterval setter funksjonen catReset på en timer slik at den utføres hver 300ms. Vi brukte setInterval slik at "catImg" alltid skal tilbakestilles.
+
+        setInterval(catReset, 300)
+
+               
+         // Eventer
+
+        
+        moveleftBtn.onclick = catLeft;
+
+        moveupBtn.onclick = catUp;
+
+        moverightBtn.onclick = catRight;
+
+        movedownBtn.onclick = catDown;
+
+        fishImg.onclick = dialogueFunction;
+
+    </script>
+    
+</body>
+</html>
